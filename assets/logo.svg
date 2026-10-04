@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" role="img" aria-label="Xingba">
+  <defs>
+    <linearGradient id="oval" x1="0.15" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stop-color="#4a6a42"/>
+      <stop offset="42%" stop-color="#243528"/>
+      <stop offset="100%" stop-color="#c4a06a"/>
+    </linearGradient>
+    <linearGradient id="star" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#f6e7c3"/>
+      <stop offset="55%" stop-color="#e0c07a"/>
+      <stop offset="100%" stop-color="#b8893c"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.2" stdDeviation="1.4" flood-color="#1a2418" flood-opacity=".35"/>
+    </filter>
+  </defs>
+  <ellipse cx="44" cy="44" rx="42" ry="36" fill="url(#oval)"/>
+  <ellipse cx="44" cy="44" rx="36.5" ry="30.5" fill="none" stroke="#f3ead6" stroke-width="1.15" opacity=".78"/>
+  <ellipse cx="44" cy="44" rx="33" ry="27.2" fill="none" stroke="#d7b57a" stroke-width=".55" opacity=".55"/>
+  <g transform="translate(44 36)" filter="url(#soft)">
+    <polygon fill="url(#star)" points="0,-16 4.6,-4.6 16.6,-4.4 7,2.6 10.6,14.4 0,7.4 -10.6,14.4 -7,2.6 -16.6,-4.4 -4.6,-4.6"/>
+    <circle cx="0" cy="-1" r="2.1" fill="#fff8e8" opacity=".55"/>
+  </g>
+  <text x="44" y="66" text-anchor="middle" fill="#f7f1e4" font-family="Georgia, 'Times New Roman', serif" font-size="8.2" letter-spacing="3.4">XINGBA</text>
+</svg>
