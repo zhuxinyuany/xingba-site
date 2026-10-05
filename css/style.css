@@ -147,18 +147,17 @@ a { color: inherit; text-decoration: none; }
 
 .hero {
   position: relative;
-  height: 420px;
+  height: 460px;
   overflow: hidden;
-  background: #1c3022;
+  background: #1a1a1a;
 }
 .hero-track { display: flex; height: 100%; transition: transform .6s ease; }
 .hero-track img {
   width: 100%;
-  height: 420px;
-  object-fit: cover;
+  height: 460px;
+  object-fit: contain;
   object-position: center;
   flex: 0 0 100%;
-  image-rendering: auto;
 }
 .hero-arrows {
   position: absolute; inset: 0;
@@ -458,7 +457,7 @@ footer a { color: var(--gold-soft); }
   .nav { display: none; }
   .nav.open { display: flex; flex-direction: column; width: 100%; background: #fff; padding: 8px 0; }
   .kicker { font-size: 32px; }
-  .hero, .hero-track img { height: 240px; }
+  .hero, .hero-track img { height: 280px; }
   .wordmark .sub { display: none; }
   .intro img { height: 280px; }
 }
