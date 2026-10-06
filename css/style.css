@@ -155,7 +155,7 @@ a { color: inherit; text-decoration: none; }
 .hero-track img {
   width: 100%;
   height: 460px;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   flex: 0 0 100%;
 }
