@@ -83,17 +83,30 @@
     });
   };
 
-  const prefetchSeries = (id) => {
-    const sec = seriesList.find((s) => s.dataset.series === id);
-    sec?.querySelectorAll("img[data-src]").forEach((img) => {
-      const href = img.getAttribute("data-src");
-      if (!href || document.querySelector(`link[rel="prefetch"][href="${href}"]`)) return;
-      const link = document.createElement("link");
-      link.rel = "prefetch";
-      link.as = "image";
-      link.href = href;
-      document.head.appendChild(link);
+  const warmCatalogThumbs = () => {
+    const urls = new Set();
+    seriesList.forEach((sec) => {
+      sec.querySelectorAll("img").forEach((img) => {
+        const href = img.getAttribute("data-src") || img.getAttribute("src");
+        if (href && href.indexOf("thumbs/") !== -1) urls.add(href);
+      });
     });
+    const list = Array.from(urls);
+    let i = 0;
+    const pump = () => {
+      list.slice(i, i + 6).forEach((href) => {
+        const im = new Image();
+        im.decoding = "async";
+        im.src = href;
+      });
+      i += 6;
+      if (i < list.length) setTimeout(pump, 40);
+    };
+    pump();
+  };
+
+  const prefetchSeries = (id) => {
+    loadSeriesImages(seriesList.find((s) => s.dataset.series === id));
   };
 
   const showSeries = (id) => {
@@ -179,6 +192,7 @@
       : (alias[hash] || "aframe-1");
     if (urlQ) applySearch();
     else showSeries(start);
+    setTimeout(warmCatalogThumbs, 120);
   }
 
   searchForm?.addEventListener("submit", (e) => {
