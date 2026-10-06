@@ -76,16 +76,27 @@
   const urlQ = new URLSearchParams(location.search).get("q") || "";
   if (searchInput && urlQ) searchInput.value = urlQ;
 
+  const loadSeriesImages = (sec) => {
+    sec?.querySelectorAll("img[data-src]").forEach((img) => {
+      img.src = img.getAttribute("data-src");
+      img.removeAttribute("data-src");
+    });
+  };
+
   const showSeries = (id) => {
     if (!seriesList.length) return;
     let found = false;
     seriesList.forEach((sec) => {
       const on = sec.dataset.series === id;
       sec.hidden = !on;
-      if (on) found = true;
+      if (on) {
+        found = true;
+        loadSeriesImages(sec);
+      }
     });
     if (!found && seriesList[0]) {
       seriesList[0].hidden = false;
+      loadSeriesImages(seriesList[0]);
       id = seriesList[0].dataset.series;
     }
     sideNav?.querySelectorAll("a").forEach((a) => {
@@ -111,6 +122,7 @@
       const match = hay.includes(q);
       sec.hidden = !match;
       if (match) {
+        loadSeriesImages(sec);
         shown += 1;
         if (!firstMatch) firstMatch = sec.dataset.series;
       }
