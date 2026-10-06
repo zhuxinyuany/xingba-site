@@ -83,6 +83,19 @@
     });
   };
 
+  const prefetchSeries = (id) => {
+    const sec = seriesList.find((s) => s.dataset.series === id);
+    sec?.querySelectorAll("img[data-src]").forEach((img) => {
+      const href = img.getAttribute("data-src");
+      if (!href || document.querySelector(`link[rel="prefetch"][href="${href}"]`)) return;
+      const link = document.createElement("link");
+      link.rel = "prefetch";
+      link.as = "image";
+      link.href = href;
+      document.head.appendChild(link);
+    });
+  };
+
   const showSeries = (id) => {
     if (!seriesList.length) return;
     let found = false;
@@ -136,6 +149,11 @@
   };
 
   sideToggle?.addEventListener("click", () => sideNav?.classList.toggle("open"));
+
+  sideNav?.addEventListener("mouseover", (e) => {
+    const a = e.target.closest("a[data-series]");
+    if (a) prefetchSeries(a.dataset.series);
+  });
 
   sideNav?.addEventListener("click", (e) => {
     const a = e.target.closest("a[data-series]");
